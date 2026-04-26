@@ -36,7 +36,7 @@ public class Programa {
 		System.out.printf("Maior idade = %.2f\n ", mediaIdade);
 
 		List<Jogador> porTime = jogadorPorTime(jogador, "Santos");
-		porTime.forEach(System.out::println);
+		//porTime.forEach(System.out::println);
 
 		List<Jogador> primeiraLetra = jogador.stream()
 				.filter(j -> j.getNome().startsWith("N") && j.getGolsMarcados() > 5).collect(Collectors.toList());

@@ -27,12 +27,7 @@ public class JogadorImpl {
 	public List<Jogador> getListaDeJogadores(Path caminho) throws IOException {
 		
 		Stream<String> linhas = Files.lines(caminho);
-		//linhas.forEach(System.out::println);
 		
-	
-		//listaDeLinhas.forEach(System.out::println);
-		
-		//List<Jogador> list = new ArrayList<>();
 	return	linhas.map(String::strip)
 		.filter(f -> !f.isEmpty())
 		.map(l -> { 
@@ -50,38 +45,7 @@ public class JogadorImpl {
 	
 
 	}
-	/*public List<Jogador> getListaDeJogadores(Path caminho) throws IOException {
-		List<String> linhas = Files.readAllLines(caminho);
-		//linhas.forEach(System.out::println);
-		//List<String> listaDeLinhas = linhas.collect(Collectors.toList());
-	
-		//listaDeLinhas.forEach(System.out::println);
-		List<Jogador> listaDeJogadores = new ArrayList<>();
-		Jogador jogador;
-		Iterator<String> it = linhas.iterator();
-		
-		while (it.hasNext()) {
-			String str = it.next();
-			String info[] = str.split(",");
-			jogador = new Jogador();
-			jogador.setNome(info[0]);
-			jogador.setPosicao(info[1]);
-			jogador.setIdade(Integer.parseInt(info[2]));
-			jogador.setTimeAtual(info[3]);
-			jogador.setGolsMarcados(Integer.parseInt(info[4]));
 
-			listaDeJogadores.add(jogador);
-		}
-		return listaDeJogadores;
-
-	}*/
-
-	
-	
-	
-	
-	
-	
 	
 	public void imprimirJogadores(List<Jogador> jogadores) {
 		jogadores.stream().forEach(System.out::println);
