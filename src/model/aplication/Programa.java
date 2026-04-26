@@ -8,7 +8,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import model.entities.Jogador;
-import model.entities.JogadorImpl;
+import model.entities.ListaServico;
 
 public class Programa {
 
@@ -25,18 +25,18 @@ public class Programa {
 		String enderecoDir = "C:\\Users\\jails\\temp\\doc";
 		String nomeArquivo = "jogadores.txt";
 
-		JogadorImpl jg = new JogadorImpl();
+		ListaServico jg = new ListaServico();
 
 		List<Jogador> jogador = jg.getListaDeJogadores(Paths.get(enderecoDir + "\\" + nomeArquivo));
 
-		//jogador.forEach(System.out::println); // Imprime toda à lista de jogadores
-		double mediaIdade = jogador.stream().mapToDouble(m -> m.getIdade()).reduce( Double::sum).getAsDouble() / jogador.size();
-				
-				
+		// jogador.forEach(System.out::println); // Imprime toda à lista de jogadores
+		double mediaIdade = jogador.stream().mapToDouble(m -> m.getIdade()).reduce(Double::sum).getAsDouble()
+				/ jogador.size();
+
 		System.out.printf("Maior idade = %.2f\n ", mediaIdade);
 
 		List<Jogador> porTime = jogadorPorTime(jogador, "Santos");
-		//porTime.forEach(System.out::println);
+		// porTime.forEach(System.out::println);
 
 		List<Jogador> primeiraLetra = jogador.stream()
 				.filter(j -> j.getNome().startsWith("N") && j.getGolsMarcados() > 5).collect(Collectors.toList());

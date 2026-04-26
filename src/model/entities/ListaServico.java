@@ -11,42 +11,38 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class JogadorImpl {
+public class ListaServico {
 	public boolean verificarArquivoExiste(Path caminho) {
 		boolean ret = false;
 		try {
 			Stream<Path> stream = Files.list(caminho);
 			Optional<Path> arq = stream.filter(p -> p.toString().endsWith("jogadores.txt")).findAny();
-			
+
 			ret = arq.isPresent();
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
 		return ret;
 	}
-	public List<Jogador> getListaDeJogadores(Path caminho) throws IOException {
-		
-		Stream<String> linhas = Files.lines(caminho);
-		
-	return	linhas.map(String::strip)
-		.filter(f -> !f.isEmpty())
-		.map(l -> { 
-		String info[] = l.split(",");
-		Jogador  j = new Jogador();
-		j.setNome(info[0]);
-		j.setPosicao(info[1]);
-		j.setIdade(Integer.parseInt(info[2]));
-		j.setTimeAtual(info[3]);
-		j.setGolsMarcados(Integer.parseInt(info[4]));
 
-		return j; }).collect(Collectors.toList());
-			
-		
-	
+	public List<Jogador> getListaDeJogadores(Path caminho) throws IOException {
+
+		Stream<String> linhas = Files.lines(caminho);
+
+		return linhas.map(String::strip).filter(f -> !f.isEmpty()).map(l -> {
+			String info[] = l.split(",");
+			Jogador j = new Jogador();
+			j.setNome(info[0]);
+			j.setPosicao(info[1]);
+			j.setIdade(Integer.parseInt(info[2]));
+			j.setTimeAtual(info[3]);
+			j.setGolsMarcados(Integer.parseInt(info[4]));
+
+			return j;
+		}).collect(Collectors.toList());
 
 	}
 
-	
 	public void imprimirJogadores(List<Jogador> jogadores) {
 		jogadores.stream().forEach(System.out::println);
 	}
